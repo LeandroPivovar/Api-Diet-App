@@ -1,11 +1,12 @@
 import Fastify from 'fastify'
+import { routes } from './routes'
 const app = Fastify({
   logger: true,
 })
 
-app.get('/', async () => {
-  return { hello: 'world' }
-})
+app.register(routes)
+
+
 const start = async () => {
   try {
     await app.listen({ port: 3000 })
