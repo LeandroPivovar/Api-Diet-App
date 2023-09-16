@@ -41,6 +41,20 @@ export async function routes(app) {
     }
   })
 
+  app.delete('/meal', async (request, reply) => {
+
+    const { mealId} = request.body
+
+    if (
+      await knex('meals')
+        .update({ status: '0' })
+        .where('id', mealId)
+        
+    ) {
+      return reply.status(201).send('Meal edited!')
+    }
+  })
+
 
 
 }
