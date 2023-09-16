@@ -32,6 +32,15 @@ export async function routes(app) {
     
   })
 
-  
+  app.put('/meal', async (request, reply) => {
+
+    const { name, description, is_on_diet } = request.body
+
+    if(await knex('meals').update({name: name, description: description, is_on_diet: is_on_diet})){
+      return reply.status(201).send('Meal edited!')
+    }
+  })
+
+
 
 }
