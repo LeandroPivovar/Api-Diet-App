@@ -23,4 +23,15 @@ export async function routes(app) {
     return reply.status(201).send(request.body)
   })  
 
+  app.post('/meal', async (request, reply) => {
+    const { user_id, name, description, is_on_diet } = request.body
+    
+    if(await knex('meals').insert({user_id: user_id, name: name, description: description, is_on_diet: is_on_diet })){
+      return reply.status(201).send('Meal created!')
+    }
+    
+  })
+
+  
+
 }
